@@ -11,10 +11,10 @@ export default {
   name: 'AppMain',
   computed: {
     key() {
-      return this.$route.path
+      return this.$route.path;
     }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -24,6 +24,7 @@ export default {
   width: 100%;
   position: relative;
   overflow: hidden;
+  background: #f5f5f5;
 }
 .fixed-header+.app-main {
   padding-top: 50px;

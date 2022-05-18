@@ -1,0 +1,79 @@
+kind: pipeline
+type: docker
+# FIXME 项目名称
+name: 项目名称
+
+volumes:
+  - name: npm_cache
+    host:
+      path: /media/disk/cache/.npm
+  - name: cache
+    host:
+      # FIXME 修改node_module缓存目录
+      path: /media/disk/cache/项目名称/node_modules
+
+clone:
+  depth: 1
+
+steps:
+  - name: build-stage
+    image: njzhyl/node:v1.1
+    volumes:
+      - name: npm_cache
+        path: /root/.npm
+      - name: cache
+        path: /drone/src/node_modules
+
+    commands:
+      - echo "build-stage"
+      - yarn
+      - yarn build:stage
+      - rm -rf ./dist/sourceMap
+      # FIXME 部署目录
+      - scp -o "StrictHostKeyChecking no" -r ./dist/* 服务器地址
+      - echo "build-finish"
+    when:
+      event:
+        - promote
+      target:
+        - stage
+
+  - name: build-prod
+    image: njzhyl/node:v1.1
+    volumes:
+      - name: npm_cache
+        path: /root/.npm
+      - name: cache
+        path: /drone/src/node_modules
+    commands:
+      - echo "build-production"
+      - yarn
+      - yarn build:prod
+      - rm -rf ./dist/sourceMap
+      # FIXME 部署目录
+      - scp -o "StrictHostKeyChecking no" -vr ./dist/* 服务器地址
+      - echo "build-finish"
+    when:
+      event:
+        - promote
+      target:
+        - production
+
+  - name: notify
+    image: njzhyl/drone-email:v1.0
+    settings:
+      host: smtphm.qiye.163.com
+      port: 465
+      username:
+        from_secret: email_user
+      password:
+        from_secret: email_password
+      from: develop@njzhyl.cn
+      # 邮件通知 被通知人数组
+      recipients: []
+      subject: "Drone Build: [{{ repo.name }}:{{ commit.branch }} {{deployTo}} {{build.event}} {{ build.status }} ]"
+    when:
+      evenet:
+        - promote
+      target:
+        - production

@@ -21,6 +21,10 @@ module.exports = {
         "allowFirstLine": false
       }
     }],
+    // "vue/require-default-prop": ["error",  {
+    //   "required": true,
+    //   "non-required": false,
+    // }],
     "vue/singleline-html-element-content-newline": "off",
     "vue/multiline-html-element-content-newline":"off",
     "vue/name-property-casing": ["error", "PascalCase"],
@@ -37,7 +41,7 @@ module.exports = {
     'camelcase': [0, {
       'properties': 'always'
     }],
-    'comma-dangle': [2, 'never'],
+    'comma-dangle': [2, 'only-multiline'],
     'comma-spacing': [2, {
       'before': false,
       'after': true
@@ -105,7 +109,7 @@ module.exports = {
     }],
     'no-lone-blocks': 2,
     'no-mixed-spaces-and-tabs': 2,
-    'no-multi-spaces': 2,
+    'no-multi-spaces': ['error', { ignoreEOLComments: true }],
     'no-multi-str': 2,
     'no-multiple-empty-lines': [2, {
       'max': 1
@@ -166,11 +170,8 @@ module.exports = {
       'avoidEscape': true,
       'allowTemplateLiterals': true
     }],
-    'semi': [2, 'never'],
-    'semi-spacing': [2, {
-      'before': false,
-      'after': true
-    }],
+    'require-atomic-updates': 'off',
+    'semi': [2, 'always'],
     'space-before-blocks': [2, 'always'],
     'space-before-function-paren': [2, 'never'],
     'space-in-parens': [2, 'never'],

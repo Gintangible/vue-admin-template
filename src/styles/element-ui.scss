@@ -47,3 +47,27 @@
 .el-range-separator {
   box-sizing: content-box;
 }
+
+.el-card__header {
+  padding: 10px 20px;
+}
+
+.el-table {
+  .link-attachment-row {
+    background: #e1f3d8;
+  }
+  .warning-row {
+    color: #f00;
+    background: #fde2e2;
+  }
+
+  .link {
+    color: #599EFF;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}
+
+.el-input-number {
+  width: 98px;
+}

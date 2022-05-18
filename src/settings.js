@@ -1,6 +1,5 @@
 module.exports = {
-
-  title: 'Vue Admin Template',
+  title: '通用管理端后台模板',
 
   /**
    * @type {boolean} true | false
@@ -12,5 +11,8 @@ module.exports = {
    * @type {boolean} true | false
    * @description Whether show the logo in sidebar
    */
-  sidebarLogo: false
-}
+  sidebarLogo: false,
+
+  // 接入sentry
+  sentry: false,
+};

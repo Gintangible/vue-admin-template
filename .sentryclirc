@@ -1,0 +1,7 @@
+[defaults]
+url=https://sentry.njzhyl.cn/
+org=sentry
+project=insurance-claim-admin
+
+[auth]
+token=7279390c150b4837b8ea9d143c8ae64904a7d474d45c4723b5a4eda6a8e9d4c4
